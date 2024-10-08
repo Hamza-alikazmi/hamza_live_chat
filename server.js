@@ -53,6 +53,11 @@ app.post('/addFile', async (req, res) => {
     const newFile = new File({ fileName, fileLink });
     await newFile.save();
     res.json(newFile);
+       res.status(200).json({ success: true, message: 'File saved successfully!' });
+  } catch (error) {
+    console.error('Error saving file:', error);
+    res.status(500).json({ success: false, message: 'Failed to save file' });
+  }
 });
 
 // Endpoint to get all files
